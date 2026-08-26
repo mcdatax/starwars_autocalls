@@ -32,6 +32,3 @@ notebooks/
 docs/
 enunciado_starwars_autocalls.pdf
 main.py
-
-# Nota: models/lgbm_duration.joblib y data/raw/ SI se versionan.
-# El artefacto entrenado y los CSV de origen son parte del entregable.
