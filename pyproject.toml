@@ -1,0 +1,27 @@
+[project]
+name = "starwars-autocalls"
+version = "3.14.15"
+description = "Predicción de duración de productos autocallables"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.0",
+    "joblib>=1.3",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "shap>=0.45",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+]
+
+[project.optional-dependencies]
+dev = ["jupyter", "pytest"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

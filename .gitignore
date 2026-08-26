@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+wheels/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Caches de herramientas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editores
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Datos generados por el entrenamiento (se regeneran con: python -m src.train)
+data/processed/
+
+# Material de trabajo, no forma parte del entregable
+notebooks/
+docs/
+enunciado_starwars_autocalls.pdf
+main.py
+
+# Nota: models/lgbm_duration.joblib y data/raw/ SI se versionan.
+# El artefacto entrenado y los CSV de origen son parte del entregable.
