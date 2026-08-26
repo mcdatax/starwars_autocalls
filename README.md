@@ -42,7 +42,7 @@ python --version
 Clona el repositorio y entra en la carpeta:
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/mcdatax/starwars_autocalls/
 cd starwars_autocalls
 ```
 
