@@ -68,8 +68,9 @@ def main() -> None:
     baseline = DummyRegressor(strategy="mean").fit(X_train, y_train)
     print_metrics("Baseline (media)", y_test, baseline.predict(X_test))
 
-    # 4. Modelo final: LightGBM, que captura no linealidades e interacciones
-    #    (barreras x tipo de cesta, efecto del tenor segun el producto).
+    # 4. Modelo de validacion: LightGBM sobre train, para medir como generaliza.
+    #    Captura no linealidades e interacciones (barreras x tipo de cesta,
+    #    efecto del tenor segun el producto).
     model = lgb.LGBMRegressor(**LGBM_PARAMS)
     model.fit(X_train, y_train, categorical_feature=CAT_COLS)
     print_metrics("LightGBM", y_test, model.predict(X_test))
@@ -84,9 +85,16 @@ def main() -> None:
     )
     print(f"CV MAE (5 folds): {cv_mae.mean():.3f} +/- {cv_mae.std():.3f}")
 
-    # 6. Artefacto: modelo + todo lo que la API necesita para inferir.
+    # 6. Modelo final de produccion: se reentrena con el 100% de los datos.
+    #    El split y el CV de arriba ya validaron la metodologia; una vez
+    #    confiamos en ella, el artefacto que sirve la API aprovecha tambien
+    #    el 20% que antes se reservo como test.
+    final_model = lgb.LGBMRegressor(**LGBM_PARAMS)
+    final_model.fit(X, y, categorical_feature=CAT_COLS)
+
+    # 7. Artefacto: modelo final + todo lo que la API necesita para inferir.
     artifact = {
-        "model": model,
+        "model": final_model,
         "version": __version__,
         "feature_cols": FEATURE_COLS,
         "cat_cols": CAT_COLS,

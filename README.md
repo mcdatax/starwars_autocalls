@@ -150,7 +150,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 
 ```json
 {
-  "avg_duration_months": 32.79
+  "avg_duration_months": 33.07
 }
 ```
 
